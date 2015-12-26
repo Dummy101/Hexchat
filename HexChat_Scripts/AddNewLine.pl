@@ -1,0 +1,36 @@
+use strict;
+use warnings;
+use HexChat qw (:all);
+
+my $NAME    = 'Newline';
+my $VERSION = '1.0.0';
+my $DESCRIPTION = 'Adds new line buffer when Ctrl+Enter pressed';
+HexChat::register($NAME, $VERSION, $DESCRIPTION);
+
+HexChat::print "$NAME Version $VERSION loaded\n";
+
+hook_print('Key Press', \&check_keys);
+
+sub callback {
+
+	HexChat::print "$NAME unloaded\n"
+
+}
+
+sub check_keys {
+
+	if ($_[0][0] == 65293 && $_[0][1] & 4) {
+		
+		my $lasttext = HexChat::get_info 'inputbox';
+		my $newline = "\n";
+		my $newtext = $lasttext.$newline;
+		
+		HexChat::command "settext $newtext";
+		HexChat::command 'setcursor ' . length $newtext;
+		
+	}
+	
+	else {
+		return EAT_NONE;
+	}
+}

@@ -1,1 +1,6 @@
-Hopefully I'll be able to edit this later :L
+Some scripts I've created, some are modified from other's work.
+In the latter cases, all original author details have been left untouched.
+
+Disclaimer:
+
+I can't guarantee your computer won't exploded.
